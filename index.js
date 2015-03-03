@@ -1,4 +1,4 @@
-module.exports = function chapterNumbering ($, document, cb) {
+module.exports = function documarkChapterNumbering ($, document, done) {
 	// Automatic page numbering
 	var h1 = 0, h2 = 0, h3 = 0;
 
@@ -46,5 +46,5 @@ module.exports = function chapterNumbering ($, document, cb) {
 		$this.text(createIndex($this));
 	});
 
-	cb();
+	done();
 };
