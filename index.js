@@ -1,41 +1,59 @@
-module.exports = function documarkChapterNumbering ($, document, done) {
-	// Automatic page numbering
-	var h1 = 0, h2 = 0, h3 = 0;
+var merge = require('merge');
 
-	function formatIndex() {
-		var index = h1 + '.';
-		if (h2 > 0) index += h2 + '.';
-		if (h3 > 0) index += h3 + '.';
-		return index + ' ';
+module.exports = function documarkChapterNumbering ($, document, done) {
+	var defaults = {
+		depth: 3
+	};
+	var config = merge(true, defaults, document.config().chapterNumbering);
+	var depth  = Math.max(0, Math.min(6, config.depth)); // 0 - 6
+
+	// Automatic page numbering
+	var numbers = new Uint8Array(depth);
+
+	function numberIndexByElement (el) {
+		// h1 => 0, h2 => 1, etc.
+		return parseInt(el.name.substr(1), 10) - 1;
 	}
 
-	function createIndex($item) {
+	function updateNumbering ($item) {
+		var i = numberIndexByElement($item[0]);
+		if (isNaN(i)) return;
+
+		numbers[i] += 1;
+
+		// Entered new chapter, reset sub chapter numbering
+		for (var j = i + 1; j < numbers.length; ++j) {
+			numbers[j] = 0;
+		}
+	}
+
+	function createPrefix ($item) {
+		var i = numberIndexByElement($item[0]);
+		if (isNaN(i)) return;
+
+		var prefix = '';
+
+		for (var j = 0; j <= i; ++j) {
+			prefix += numbers[j] + '.';
+		}
+
+		return prefix + ' ';
+	}
+
+	function updateTitle ($item) {
 		var title = $item.text();
 
 		// Remove existing numbering
 		title = title.replace(/^[0-9\.\s]+/, '');
 
-		// Prepend correct number
-		var type = $item[0].name.toLowerCase();
-
-		if (type === 'h1' ) {
-			h1 += 1;
-			h2 = 0;
-			h3 = 0;
-			title = formatIndex() + title;
-		} else if (type === 'h2') {
-			h2 += 1;
-			h3 = 0;
-			title = formatIndex() + title;
-		} else if (type === 'h3' ) {
-			h3 += 1;
-			title = formatIndex() + title;
-		}
-
-		return title;
+		// Update title
+		$item.text(createPrefix($item) + title);
 	}
 
-	$('h1, h2, h3').each(function () {
+	// Iterate over header elements
+	var selector = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].slice(0, depth).join(',');
+
+	$(selector).each(function () {
 		var $this = $(this);
 
 		// Skip if self/parent has 'no-index' class
@@ -43,7 +61,8 @@ module.exports = function documarkChapterNumbering ($, document, done) {
 			return;
 		}
 
-		$this.text(createIndex($this));
+		updateNumbering($this);
+		updateTitle($this);
 	});
 
 	done();

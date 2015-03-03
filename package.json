@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/mauvm/documark-chapter-numbering/issues"
   },
-  "homepage": "https://github.com/mauvm/documark-chapter-numbering"
+  "homepage": "https://github.com/mauvm/documark-chapter-numbering",
+  "dependencies": {
+    "merge": "^1.2.0"
+  }
 }
