@@ -68,8 +68,8 @@ module.exports = function documarkChapterNumbering ($, document, done) {
 	$(selector).each(function () {
 		var $this = $(this);
 
-		// Skip if self/parent has 'no-index' class
-		if ($this.hasClass('no-index') || $this.parents('.no-index').length) {
+		// Skip if self/parent has 'no-number' class
+		if ($this.hasClass('no-number') || $this.parents('.no-number').length) {
 			return;
 		}
 
