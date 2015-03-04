@@ -1,11 +1,11 @@
 {
-  "name": "documark-chapter-numbering",
-  "version": "0.2.1",
+  "name": "dmp-chapter-numbering",
+  "version": "0.2.2",
   "description": "Documark plugin for automatic chapter numbering.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mauvm/documark-chapter-numbering.git"
+    "url": "https://github.com/mauvm/dmp-chapter-numbering.git"
   },
   "keywords": [
     "documark",
@@ -17,9 +17,9 @@
   "author": "Maurits van Mastrigt <maurits@nerdieworks.nl>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mauvm/documark-chapter-numbering/issues"
+    "url": "https://github.com/mauvm/dmp-chapter-numbering/issues"
   },
-  "homepage": "https://github.com/mauvm/documark-chapter-numbering",
+  "homepage": "https://github.com/mauvm/dmp-chapter-numbering",
   "dependencies": {
     "merge": "^1.2.0"
   }

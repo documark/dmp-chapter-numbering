@@ -1,6 +1,6 @@
 var merge = require('merge');
 
-module.exports = function documarkChapterNumbering ($, document, done) {
+module.exports = function dmpChapterNumbering ($, document, done) {
 	var defaults = {
 		depth: 3
 	};
