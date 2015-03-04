@@ -40,14 +40,26 @@ module.exports = function documarkChapterNumbering ($, document, done) {
 		return prefix + ' ';
 	}
 
-	function updateTitle ($item) {
-		var title = $item.text();
+	function createTitle ($item, title) {
+		// Sanitize title
+		title = title.trim().replace(/^[0-9\.\s]+/, '');
 
-		// Remove existing numbering
-		title = title.replace(/^[0-9\.\s]+/, '');
+		// Prepend chapter number
+		return createPrefix($item) + title;
+	}
+
+	function updateTitle ($item) {
+		// Get first non-empty text node
+		var $textNode = $item.contents().filter(function () {
+			return this.type === 'text' && this.data.trim().length > 0;
+		}).eq(0);
 
 		// Update title
-		$item.text(createPrefix($item) + title);
+		if ($textNode.length) {
+			$textNode[0].data = createTitle($item, $textNode.text());
+		} else {
+			$item.text(createTitle($item, $item.text()));
+		}
 	}
 
 	// Iterate over header elements
