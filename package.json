@@ -1,6 +1,6 @@
 {
   "name": "documark-chapter-numbering",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Documark plugin for automatic chapter numbering.",
   "main": "index.js",
   "repository": {
