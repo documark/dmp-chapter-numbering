@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mauvm/dmp-chapter-numbering.git"
+    "url": "https://github.com/documark/dmp-chapter-numbering.git"
   },
   "keywords": [
     "documark",
@@ -17,9 +17,9 @@
   "author": "Maurits van Mastrigt <maurits@nerdieworks.nl>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mauvm/dmp-chapter-numbering/issues"
+    "url": "https://github.com/documark/dmp-chapter-numbering/issues"
   },
-  "homepage": "https://github.com/mauvm/dmp-chapter-numbering",
+  "homepage": "https://github.com/documark/dmp-chapter-numbering",
   "dependencies": {
     "merge": "^1.2.0"
   }

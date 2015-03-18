@@ -1,7 +1,7 @@
 # Documark Chapter Numbering
 
 [![npm version](https://badge.fury.io/js/dmp-chapter-numbering.svg)](http://badge.fury.io/js/dmp-chapter-numbering)
-[![dependency status](https://david-dm.org/mauvm/dmp-chapter-numbering.svg)](https://david-dm.org/mauvm)
+[![dependency status](https://david-dm.org/documark/dmp-chapter-numbering.svg)](https://david-dm.org/documark/dmp-chapter-numbering)
 
 > Documark plugin for automatic chapter numbering.
 
