@@ -49,17 +49,17 @@ module.exports = function dmpChapterNumbering ($, document, done) {
 	}
 
 	function updateTitle ($item) {
-		// Get first non-empty text node
-		var $textNode = $item.contents().filter(function () {
-			return this.type === 'text' && this.data.trim().length > 0;
-		}).eq(0);
+		// Get first node
+		var $textNode = $item.contents()[0]
+
+		// Prepend text node
+		if ( ! $textNode || ! $textNode.type !== 'text') {
+			$textNode = $($.parseHTML(' '))
+			$item.prepend($textNode)
+		}
 
 		// Update title
-		if ($textNode.length) {
-			$textNode[0].data = createTitle($item, $textNode.text());
-		} else {
-			$item.text(createTitle($item, $item.text()));
-		}
+		$textNode[0].data = createTitle($item, $textNode.text());
 	}
 
 	// Iterate over header elements
